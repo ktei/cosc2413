@@ -1,10 +1,8 @@
 <?php namespace Illuminate\Support\Facades;
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response as IlluminateResponse;
 use Illuminate\Support\Contracts\JsonableInterface;
 use Illuminate\Support\Contracts\ArrayableInterface;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class Response {
@@ -22,11 +20,11 @@ class Response {
 	 * @param  string  $content
 	 * @param  int     $status
 	 * @param  array   $headers
-	 * @return \Illuminate\Http\Response
+	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public static function make($content = '', $status = 200, array $headers = array())
 	{
-		return new IlluminateResponse($content, $status, $headers);
+		return new \Illuminate\Http\Response($content, $status, $headers);
 	}
 
 	/**
@@ -36,7 +34,7 @@ class Response {
 	 * @param  array   $data
 	 * @param  int     $status
 	 * @param  array   $headers
-	 * @return \Illuminate\Http\Response
+	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public static function view($view, $data = array(), $status = 200, array $headers = array())
 	{
@@ -73,7 +71,7 @@ class Response {
 	 */
 	public static function stream($callback, $status = 200, array $headers = array())
 	{
-		return new StreamedResponse($callback, $status, $headers);
+		return new \Symfony\Component\HttpFoundation\StreamedResponse($callback, $status, $headers);
 	}
 
 	/**

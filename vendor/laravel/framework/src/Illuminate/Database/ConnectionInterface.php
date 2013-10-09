@@ -1,6 +1,4 @@
-<?php namespace Illuminate\Database;
-
-use Closure;
+<?php namespace Illuminate\Database; use Closure;
 
 interface ConnectionInterface {
 

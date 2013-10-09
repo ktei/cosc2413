@@ -19,13 +19,6 @@ class FileViewFinder implements ViewFinderInterface {
 	protected $paths;
 
 	/**
-	 * The array of views that have been located.
-	 *
-	 * @var array
-	 */
-	protected $views = array();
-
-	/**
 	 * The namespace to file path hints.
 	 *
 	 * @var array
@@ -66,14 +59,9 @@ class FileViewFinder implements ViewFinderInterface {
 	 */
 	public function find($name)
 	{
-		if (isset($this->views[$name])) return $this->views[$name];
+		if (strpos($name, '::') !== false) return $this->findNamedPathView($name);
 
-		if (strpos($name, '::') !== false)
-		{
-			return $this->views[$name] = $this->findNamedPathView($name);
-		}
-
-		return $this->views[$name] = $this->findInPaths($name, $this->paths);
+		return $this->findInPaths($name, $this->paths);
 	}
 
 	/**

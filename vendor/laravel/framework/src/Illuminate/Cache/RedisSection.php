@@ -27,7 +27,7 @@ class RedisSection extends Section {
 
 		$this->store->connection()->del($this->foreverKey());
 
-		parent::flush();
+		$this->store->increment($this->sectionKey());
 	}
 
 	/**

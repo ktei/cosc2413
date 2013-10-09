@@ -1,39 +1,35 @@
 <?php namespace Illuminate\Database;
 
-use Doctrine\DBAL\Driver\PDOSqlite\Driver as DoctrineDriver;
-use Illuminate\Database\Query\Grammars\SQLiteGrammar as QueryGrammar;
-use Illuminate\Database\Schema\Grammars\SQLiteGrammar as SchemaGrammar;
-
 class SQLiteConnection extends Connection {
 
 	/**
 	 * Get the default query grammar instance.
 	 *
-	 * @return \Illuminate\Database\Query\Grammars\SQLiteGrammar
+	 * @return \Illuminate\Database\Query\Grammars\Grammars\Grammar
 	 */
 	protected function getDefaultQueryGrammar()
 	{
-		return $this->withTablePrefix(new QueryGrammar);
+		return $this->withTablePrefix(new Query\Grammars\SQLiteGrammar);
 	}
 
 	/**
 	 * Get the default schema grammar instance.
 	 *
-	 * @return \Illuminate\Database\Schema\Grammars\SQLiteGrammar
+	 * @return \Illuminate\Database\Schema\Grammars\Grammar
 	 */
 	protected function getDefaultSchemaGrammar()
 	{
-		return $this->withTablePrefix(new SchemaGrammar);
+		return $this->withTablePrefix(new Schema\Grammars\SQLiteGrammar);
 	}
 
 	/**
 	 * Get the Doctrine DBAL Driver.
 	 *
-	 * @return \Doctrine\DBAL\Driver\PDOSqlite\Driver
+	 * @return \Doctrine\DBAL\Driver
 	 */
 	protected function getDoctrineDriver()
 	{
-		return new DoctrineDriver;
+		return new \Doctrine\DBAL\Driver\PDOSqlite\Driver;
 	}
 
 }

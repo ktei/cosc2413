@@ -23,21 +23,17 @@ class Collection extends BaseCollection {
 	/**
 	 * Load a set of relationships onto the collection.
 	 *
-	 * @param  dynamic  $relations
-	 * @return \Illuminate\Database\Eloquent\Collection
+	 * @param  dynamic  string
+	 * @return void
 	 */
-	public function load($relations)
+	public function load()
 	{
 		if (count($this->items) > 0)
 		{
-			if (is_string($relations)) $relations = func_get_args();
-
-			$query = $this->first()->newQuery()->with($relations);
+			$query = $this->first()->newQuery()->with(func_get_args());
 
 			$this->items = $query->eagerLoadRelations($this->items);
 		}
-
-		return $this;
 	}
 
 	/**
@@ -73,34 +69,6 @@ class Collection extends BaseCollection {
 	public function fetch($key)
 	{
 		return new static(array_fetch($this->toArray(), $key));
-	}
-
-	/**
-	 * Get the max value of a given key.
-	 *
-	 * @param  string  $key
-	 * @return mixed
-	 */
-	public function max($key)
-	{
-		return $this->reduce(function($result, $item) use ($key)
-		{
-			return (is_null($result) or $item->{$key} > $result) ? $item->{$key} : $result;
-		});
-	}
-
-	/**
-	 * Get the min value of a given key.
-	 *
-	 * @param  string  $key
-	 * @return mixed
-	 */
-	public function min($key)
-	{
-		return $this->reduce(function($result, $item) use ($key)
-		{
-			return (is_null($result) or $item->{$key} < $result) ? $item->{$key} : $result;
-		});
 	}
 
 	/**

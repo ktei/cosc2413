@@ -1,14 +1,17 @@
 <?php
 
 use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends BaseModel implements UserInterface {
-    
-    public function __construct($data = array()) {
-        foreach ($data as $key => $value) {
-            $this->$key = $value;
-        }
+class User extends Model implements UserInterface {
+
+    public static function fromCSV($data) {
+        return new User(array(
+            'email' => $data[0],
+            'password' => $data[1],
+            'name' => $data[2],
+            'biz_name' => $data[3],
+            'prices' => json_decode($data[4])
+        ));
     }
 
 	/**
@@ -18,7 +21,7 @@ class User extends BaseModel implements UserInterface {
 	 */
 	public function getAuthIdentifier()
 	{
-		return 'key';
+		return $this->email;
 	}
 
 	/**
@@ -28,7 +31,7 @@ class User extends BaseModel implements UserInterface {
 	 */
 	public function getAuthPassword()
 	{
-		return 'password';
+		return $this->password;
 	}
 
 }

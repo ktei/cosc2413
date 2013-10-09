@@ -73,9 +73,7 @@ require $framework.'/Illuminate/Foundation/start.php';
 
 defined('FILE_PRODUCTS') || define('FILE_PRODUCTS', 'products.txt');
 defined('FILE_USERS') || define('FILE_USERS', 'users.txt');
+defined('DUMMY_USER_EMAIL') || define('DUMMY_USER_EMAIL', 'FOO');
 
-Auth::extend('customAuth', function() {
-    return new \Wq\Security\CustomAuth();
-});
 
 return $app;

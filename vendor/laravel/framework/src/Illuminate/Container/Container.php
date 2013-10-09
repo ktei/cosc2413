@@ -1,9 +1,4 @@
-<?php namespace Illuminate\Container;
-
-use Closure;
-use ArrayAccess;
-use ReflectionClass;
-use ReflectionParameter;
+<?php namespace Illuminate\Container; use Closure, ArrayAccess, ReflectionParameter;
 
 class BindingResolutionException extends \Exception {}
 
@@ -230,7 +225,7 @@ class Container implements ArrayAccess {
 		// so the developer can keep using the same objects instance every time.
 		if (isset($this->instances[$abstract]))
 		{
-			return $this->instances[$abstract];
+			return $this->instances[$abstract];	
 		}
 
 		$concrete = $this->getConcrete($abstract);
@@ -298,7 +293,7 @@ class Container implements ArrayAccess {
 			return $concrete($this, $parameters);
 		}
 
-		$reflector = new ReflectionClass($concrete);
+		$reflector = new \ReflectionClass($concrete);
 
 		// If the type is not instantiable, the developer is attempting to resolve
 		// an abstract type such as an Interface of Abstract Class and there is
@@ -534,8 +529,6 @@ class Container implements ArrayAccess {
 	public function offsetUnset($key)
 	{
 		unset($this->bindings[$key]);
-
-		unset($this->instances[$key]);
 	}
 
 }

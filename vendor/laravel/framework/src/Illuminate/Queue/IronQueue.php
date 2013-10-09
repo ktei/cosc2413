@@ -77,7 +77,7 @@ class IronQueue extends Queue implements QueueInterface {
 	 * @param  string  $queue
 	 * @return mixed
 	 */
-	public function later($delay, $job, $data = '', $queue = null)
+public function later($delay, $job, $data = '', $queue = null)
 	{
 		$delay = $this->getSeconds($delay);
 
@@ -112,7 +112,7 @@ class IronQueue extends Queue implements QueueInterface {
 	/**
 	 * Marshal a push queue request and fire the job.
 	 *
-	 * @return \Illuminate\Http\Response
+	 * @return Illuminate\Http\Response
 	 */
 	public function marshal()
 	{
@@ -124,7 +124,7 @@ class IronQueue extends Queue implements QueueInterface {
 	/**
 	 * Marshal out the pushed job and payload.
 	 *
-	 * @return object
+	 * @return StdClass
 	 */
 	protected function marshalPushedJob()
 	{
@@ -140,7 +140,7 @@ class IronQueue extends Queue implements QueueInterface {
 	/**
 	 * Create a new IronJob for a pushed job.
 	 *
-	 * @param  object  $job
+	 * @param  \StdClass  $job
 	 * @return \Illuminate\Queue\Jobs\IronJob
 	 */
 	protected function createPushedIronJob($job)

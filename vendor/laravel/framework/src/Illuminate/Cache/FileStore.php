@@ -49,14 +49,7 @@ class FileStore implements StoreInterface {
 			return null;
 		}
 
-		try
-		{
-			$expire = substr($contents = $this->files->get($path), 0, 10);
-		}
-		catch (\Exception $e)
-		{
-			return null;
-		}
+		$expire = substr($contents = $this->files->get($path), 0, 10);
 
 		// If the current time is greater than expiration timestamps we will delete
 		// the file and return null. This helps clean up the old files and keeps
@@ -94,13 +87,9 @@ class FileStore implements StoreInterface {
 	 */
 	protected function createCacheDirectory($path)
 	{
-		try
+		if ( ! $this->files->isDirectory($directory = dirname($path)))
 		{
-			$this->files->makeDirectory(dirname($path), 0777, true);
-		}
-		catch (\Exception $e)
-		{
-			//
+			$this->files->makeDirectory($directory, 0777, true);
 		}
 	}
 

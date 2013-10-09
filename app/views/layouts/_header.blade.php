@@ -6,19 +6,31 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="{{URL::action('PagesController@home')}}">Wq Space</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="#">Home</a>
+                <li>
+                    <a href="{{URL::action('PagesController@home')}}">Home</a>
                 </li>
                 <li>
-                    <a href="#about">About</a>
+                    <a href="{{URL::action('ProductsController@index')}}">Products</a>
                 </li>
                 <li>
-                    <a href="#contact">Contact</a>
+                    <a href="{{URL::action('PagesController@privacy')}}">Privacy</a>
                 </li>
+                <li>
+                    <a href="{{URL::action('CartController@index')}}">Cart</a>
+                </li>
+                @if (Auth::check())
+                    <li>
+                        <a href="{{URL::action('SessionsController@destroy')}}">Log out</a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{URL::action('SessionsController@create')}}">Log in</a>
+                    </li>
+                @endif
             </ul>
         </div><!--/.nav-collapse -->
     </div>

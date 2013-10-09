@@ -3,4 +3,6 @@
 interface ProductRepositoryInterface {
     
     public function all();
+
+    public function find($code);
 }

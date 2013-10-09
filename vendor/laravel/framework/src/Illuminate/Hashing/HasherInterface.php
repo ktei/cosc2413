@@ -6,7 +6,7 @@ interface HasherInterface {
 	 * Hash the given value.
 	 *
 	 * @param  string  $value
-	 * @param  array   $options
+	 * @return array   $options
 	 * @return string
 	 */
 	public function make($value, array $options = array());

@@ -252,11 +252,11 @@ class TestCase extends \PHPUnit_Framework_TestCase {
 
 		if (is_null($value))
 		{
-			$this->assertTrue($this->app['session.store']->has($key));
+			$this->assertTrue($this->app['session']->has($key));
 		}
 		else
 		{
-			$this->assertEquals($value, $this->app['session.store']->get($key));
+			$this->assertEquals($value, $this->app['session']->get($key));
 		}
 	}
 
@@ -294,7 +294,7 @@ class TestCase extends \PHPUnit_Framework_TestCase {
 
 		$bindings = (array)$bindings;
 
-		$errors = $this->app['session.store']->get('errors');
+		$errors = $this->app['session']->get('errors');
 
 		foreach ($bindings as $key => $value)
 		{
@@ -307,16 +307,6 @@ class TestCase extends \PHPUnit_Framework_TestCase {
 				$this->assertContains($value, $errors->get($key, $format));
 			}
 		}
-	}
-
-	/**
-	 * Assert that the session has old input.
-	 *
-	 * @return void
-	 */
-	public function assertHasOldInput()
-	{
-		$this->assertSessionHas('_old_input');
 	}
 
 	/**

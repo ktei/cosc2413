@@ -461,8 +461,6 @@ class Grammar extends BaseGrammar {
 
 		return 'order by '.implode(', ', array_map(function($order) use ($me)
 		{
-			if (isset($order['sql'])) return $order['sql'];
-
 			return $me->wrap($order['column']).' '.$order['direction'];
 		}
 		, $orders));
@@ -477,7 +475,7 @@ class Grammar extends BaseGrammar {
 	 */
 	protected function compileLimit(Builder $query, $limit)
 	{
-		return 'limit '.(int) $limit;
+		return "limit $limit";
 	}
 
 	/**
@@ -489,7 +487,7 @@ class Grammar extends BaseGrammar {
 	 */
 	protected function compileOffset(Builder $query, $offset)
 	{
-		return 'offset '.(int) $offset;
+		return "offset $offset";
 	}
 
 	/**

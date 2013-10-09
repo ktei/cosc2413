@@ -25,7 +25,7 @@ class SubscribeCommand extends Command {
 	/**
 	 * The queue meta information from Iron.io.
 	 *
-	 * @var object
+	 * @var \StdClass
 	 */
 	protected $meta;
 
@@ -113,7 +113,7 @@ class SubscribeCommand extends Command {
 	/**
 	 * Get the queue inforamtion from Iron.io.
 	 *
-	 * @return object
+	 * @return \StdClass
 	 */
 	protected function getQueue()
 	{

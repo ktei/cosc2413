@@ -47,41 +47,12 @@ abstract class Facade {
 		}
 		else
 		{
-			$mock = static::createFreshMockInstance($name);
-		}
+			static::$resolvedInstance[$name] = $mock = \Mockery::mock(static::getMockableClass($name));
 
-		return call_user_func_array(array($mock, 'shouldReceive'), func_get_args());
-	}
-
-	/**
-	 * Create a fresh mock instance for the given class.
-	 *
-	 * @param  string  $name
-	 * @return \Mockery\Expectation
-	 */
-	protected static function createFreshMockInstance($name)
-	{
-		static::$resolvedInstance[$name] = $mock = static::createMockByName($name);
-
-		if (isset(static::$app))
-		{
 			static::$app->instance($name, $mock);
 		}
 
-		return $mock;
-	}
-
-	/**
-	 * Create a fresh mock instance for the given class.
-	 *
-	 * @param  string  $name
-	 * @return \Mockery\Expectation
-	 */
-	protected static function createMockByName($name)
-	{
-		$class = static::getMockableClass($name);
-
-		return $class ? \Mockery::mock($class) : \Mockery::mock();
+		return call_user_func_array(array($mock, 'shouldReceive'), func_get_args());
 	}
 
 	/**
@@ -103,7 +74,7 @@ abstract class Facade {
 	 */
 	protected static function getMockableClass()
 	{
-		if ($root = static::getFacadeRoot()) return get_class($root);
+		return get_class(static::getFacadeRoot());
 	}
 
 	/**

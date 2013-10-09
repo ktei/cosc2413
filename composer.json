@@ -4,9 +4,14 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.0.*",
-		"fzaninotto/faker": "1.2.*"
+		"laravel/framework": "4.0.7",
+		"fzaninotto/faker": "1.2.*",
+        "way/laravel-test-helpers": "*"
 	},
+    "require-dev": {
+        "way/laravel-test-helpers": "*",
+        "mockery/mockery": "dev-master@dev"
+    },
 	"autoload": {
 		"classmap": [
 			"app/commands",
@@ -16,6 +21,7 @@
             "app/lib",
 			"app/database/migrations",
 			"app/database/seeds",
+            "app/tests/helpers",
 			"app/tests/TestCase.php"
 		]
 	},

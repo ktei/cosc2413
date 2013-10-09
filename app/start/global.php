@@ -81,3 +81,7 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+Auth::extend('customAuth', function($app) {
+    return new \Illuminate\Auth\Guard(new \Wq\Security\CustomAuth(), $app['session']);
+});

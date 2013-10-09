@@ -1,50 +1,45 @@
 <?php namespace Illuminate\Database;
 
-use Doctrine\DBAL\Driver\PDOPgSql\Driver as DoctrineDriver;
-use Illuminate\Database\Query\Processors\PostgresProcessor;
-use Illuminate\Database\Query\Grammars\PostgresGrammar as QueryGrammar;
-use Illuminate\Database\Schema\Grammars\PostgresGrammar as SchemaGrammar;
-
 class PostgresConnection extends Connection {
 
 	/**
 	 * Get the default query grammar instance.
 	 *
-	 * @return \Illuminate\Database\Query\Grammars\PostgresGrammar
+	 * @return \Illuminate\Database\Query\Grammars\Grammars\Grammar
 	 */
 	protected function getDefaultQueryGrammar()
 	{
-		return $this->withTablePrefix(new QueryGrammar);
+		return $this->withTablePrefix(new Query\Grammars\PostgresGrammar);
 	}
 
 	/**
 	 * Get the default schema grammar instance.
 	 *
-	 * @return \Illuminate\Database\Schema\Grammars\PostgresGrammar
+	 * @return \Illuminate\Database\Schema\Grammars\Grammar
 	 */
 	protected function getDefaultSchemaGrammar()
 	{
-		return $this->withTablePrefix(new SchemaGrammar);
+		return $this->withTablePrefix(new Schema\Grammars\PostgresGrammar);
 	}
 
 	/**
 	 * Get the default post processor instance.
 	 *
-	 * @return \Illuminate\Database\Query\Processors\PostgresProcessor
+	 * @return \Illuminate\Database\Query\Processors\Processor
 	 */
 	protected function getDefaultPostProcessor()
 	{
-		return new PostgresProcessor;
+		return new Query\Processors\PostgresProcessor;
 	}
 
 	/**
 	 * Get the Doctrine DBAL Driver.
 	 *
-	 * @return \Doctrine\DBAL\Driver\PDOPgSql\Driver
+	 * @return \Doctrine\DBAL\Driver
 	 */
 	protected function getDoctrineDriver()
 	{
-		return new DoctrineDriver;
+		return new \Doctrine\DBAL\Driver\PDOPgSql\Driver;
 	}
 
 }

@@ -141,7 +141,7 @@ class MigrationCreator {
 	/**
 	 * Get the date prefix for the migration.
 	 *
-	 * @return string
+	 * @return int
 	 */
 	protected function getDatePrefix()
 	{

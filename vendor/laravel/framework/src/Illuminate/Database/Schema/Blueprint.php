@@ -494,20 +494,6 @@ class Blueprint {
 	}
 
 	/**
-	 * Create a new double column on the table.
-	 *
-	 * @param  string   $column
-	 * @param  int|null	$total
-	 * @param  int|null $places
-	 * @return \Illuminate\Support\Fluent
-	 *
-	 */
-	public function double($column, $total = null, $places = null)
-	{
-		return $this->addColumn('double', $column, compact('total', 'places'));
-	}
-
-	/**
 	 * Create a new decimal column on the table.
 	 *
 	 * @param  string  $column

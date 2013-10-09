@@ -2,9 +2,8 @@
 
 use Illuminate\Session\Store as SessionStore;
 use Symfony\Component\HttpFoundation\ParameterBag;
-use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
-class Request extends SymfonyRequest {
+class Request extends \Symfony\Component\HttpFoundation\Request {
 
 	/**
 	 * The decoded JSON content for the request.
@@ -250,11 +249,11 @@ class Request extends SymfonyRequest {
 	 *
 	 * @param  string  $key
 	 * @param  mixed   $default
-	 * @return \Symfony\Component\HttpFoundation\File\UploadedFile|array
+	 * @return \Symfony\Component\HttpFoundation\File\UploadedFile
 	 */
 	public function file($key = null, $default = null)
 	{
-		return array_get($this->files->all(), $key, $default);
+		return $this->retrieveItem('files', $key, $default);
 	}
 
 	/**
@@ -265,7 +264,7 @@ class Request extends SymfonyRequest {
 	 */
 	public function hasFile($key)
 	{
-		return $this->file($key) instanceof \SplFileInfo;
+		return $this->files->has($key) and ! is_null($this->file($key));
 	}
 
 	/**

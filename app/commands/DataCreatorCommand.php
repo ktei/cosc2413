@@ -99,6 +99,7 @@ class DataCreatorCommand extends Command {
          */    
         $list = array();
         $list[] = $this->makeDummyUser();
+        $list[] = $this->makeTestUser();
         for ($i = 0; $i < $this->count; $i++) {
             $list[] = array(
                 "{$faker->userName}{$i}@{$faker->safeEmailDomain}",
@@ -113,10 +114,20 @@ class DataCreatorCommand extends Command {
     
     private function makeDummyUser() {
         return array(
+            DUMMY_USER_EMAIL,
             'FOO',
             'FOO',
             'FOO',
-            'FOO',
+            $this->makePrices()
+        );
+    }
+
+    private function makeTestUser() {
+        return array(
+            'ktei2008@gmail.com',
+            'password',
+            'Rui Cheng',
+            'Ryarc',
             $this->makePrices()
         );
     }
@@ -132,8 +143,10 @@ class DataCreatorCommand extends Command {
         for ($i = 0; $i < $this->count; $i++) {
             $list[] = array(
                 "p-{$i}",
-                $faker->word,
-                $faker->url,
+                $faker->sentence(2),
+                'http://placehold.it/100x100',
+                'http://placehold.it/200x200',
+                $faker->paragraph(5)
             );
         }
         return $list;

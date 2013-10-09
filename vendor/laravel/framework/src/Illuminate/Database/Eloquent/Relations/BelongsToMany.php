@@ -521,9 +521,9 @@ class BelongsToMany extends Relation {
 
 		foreach ($records as $id => $attributes)
 		{
-			if ( ! is_array($attributes))
+			if (is_numeric($attributes))
 			{
-				list($id, $attributes) = array($attributes, array());
+				list($id, $attributes) = array((int) $attributes, array());
 			}
 
 			$results[$id] = $attributes;
@@ -814,9 +814,11 @@ class BelongsToMany extends Relation {
 	 */
 	public function newPivot(array $attributes = array(), $exists = false)
 	{
-		$pivot = $this->related->newPivot($this->parent, $attributes, $this->table, $exists);
+		$pivot = new Pivot($this->parent, $attributes, $this->table, $exists);
 
-		return $pivot->setPivotKeys($this->foreignKey, $this->otherKey);
+		$pivot->setPivotKeys($this->foreignKey, $this->otherKey);
+
+		return $pivot;
 	}
 
 	/**

@@ -28,7 +28,7 @@ interface MigrationRepositoryInterface {
 	/**
 	 * Remove a migration from the log.
 	 *
-	 * @param  object  $migration
+	 * @param  \StdClass  $migration
 	 * @return void
 	 */
 	public function delete($migration);

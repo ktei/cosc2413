@@ -55,7 +55,7 @@ class Dispatcher {
 	{
 		if (str_contains($event, '*'))
 		{
-			return $this->setupWildcardListen($event, $listener);
+			return $this->setupWildcardListen($event, $listener, $priority = 0);
 		}
 
 		$this->listeners[$event][$priority][] = $this->makeListener($listener);
@@ -68,9 +68,10 @@ class Dispatcher {
 	 *
 	 * @param  string  $event
 	 * @param  mixed   $listener
+	 * @param  int     $priority
 	 * @return void
 	 */
-	protected function setupWildcardListen($event, $listener)
+	protected function setupWildcardListen($event, $listener, $priority)
 	{
 		$this->wildcards[$event][] = $this->makeListener($listener);
 	}
@@ -274,7 +275,7 @@ class Dispatcher {
 	 * Create a class based listener using the IoC container.
 	 *
 	 * @param  mixed    $listener
-	 * @return \Closure
+	 * @return Closure
 	 */
 	public function createClassListener($listener)
 	{

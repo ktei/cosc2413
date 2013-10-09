@@ -1,52 +1,47 @@
 <?php namespace Illuminate\Database;
 
-use Illuminate\Database\Schema\MySqlBuilder;
-use Doctrine\DBAL\Driver\PDOMySql\Driver as DoctrineDriver;
-use Illuminate\Database\Query\Grammars\MySqlGrammar as QueryGrammar;
-use Illuminate\Database\Schema\Grammars\MySqlGrammar as SchemaGrammar;
-
 class MySqlConnection extends Connection {
 
 	/**
 	 * Get a schema builder instance for the connection.
 	 *
-	 * @return \Illuminate\Database\Schema\MySqlBuilder
+	 * @return \Illuminate\Database\Schema\Builder
 	 */
 	public function getSchemaBuilder()
 	{
 		if (is_null($this->schemaGrammar)) { $this->useDefaultSchemaGrammar(); }
 
-		return new MySqlBuilder($this);
+		return new Schema\MySqlBuilder($this);
 	}
 
 	/**
 	 * Get the default query grammar instance.
 	 *
-	 * @return \Illuminate\Database\Query\Grammars\MySqlGrammar
+	 * @return \Illuminate\Database\Query\Grammars\Grammars\Grammar
 	 */
 	protected function getDefaultQueryGrammar()
 	{
-		return $this->withTablePrefix(new QueryGrammar);
+		return $this->withTablePrefix(new Query\Grammars\MySqlGrammar);
 	}
 
 	/**
 	 * Get the default schema grammar instance.
 	 *
-	 * @return \Illuminate\Database\Schema\Grammars\MySqlGrammar
+	 * @return \Illuminate\Database\Schema\Grammars\Grammar
 	 */
 	protected function getDefaultSchemaGrammar()
 	{
-		return $this->withTablePrefix(new SchemaGrammar);
+		return $this->withTablePrefix(new Schema\Grammars\MySqlGrammar);
 	}
 
 	/**
 	 * Get the Doctrine DBAL Driver.
 	 *
-	 * @return \Doctrine\DBAL\Driver\PDOMySql\Driver
+	 * @return \Doctrine\DBAL\Driver
 	 */
 	protected function getDoctrineDriver()
 	{
-		return new DoctrineDriver;
+		return new \Doctrine\DBAL\Driver\PDOMySql\Driver;
 	}
 
 }
