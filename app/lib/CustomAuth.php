@@ -1,15 +1,20 @@
 <?php namespace Wq\Security;
 
+use \Wq\Repositories\UserRepositoryInterface as UserRepository;
+
 class CustomAuth extends Laravel\Auth\Drivers\Driver {
     
-    public function __construct() {
-        
+    private $userRepository;
+    
+    public function __construct(UserRepository $userRepository) {
+        $this->userRepository = $userRepository;
     }
 
     public function attempt($arguments = array()) {
-        $username = $arguments['email'];
+        $email = $arguments['email'];
         $password = $arguments['password'];
-        return $this->login($result->email, false);
+        $user = $this->userRepository->find($email);
+        return $this->login($user->email, false);
     }
 
     public function retrieve($id) {

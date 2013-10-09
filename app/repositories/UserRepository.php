@@ -2,7 +2,10 @@
 
 class UserRepository implements UserRepositoryInterface {
     
-    public function find($id) {
-        return array();
+    public function find($email) {
+        return new User(array(
+            'email' => 'ktei2008@gmail.com',
+            'password' => 'password'
+        ));
     }
 }

@@ -3,10 +3,12 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User implements UserInterface {
+class User extends BaseModel implements UserInterface {
     
-    public function __construct() {
-        
+    public function __construct($data = array()) {
+        foreach ($data as $key => $value) {
+            $this->$key = $value;
+        }
     }
 
 	/**
