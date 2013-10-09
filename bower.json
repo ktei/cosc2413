@@ -1,0 +1,13 @@
+{
+    "name": "cosc2413",
+    "version": "0.1",
+    "authors": ["windfeathers <windfeathers@vip.qq.com>"],
+    "description": "Web programming assignment",
+    "license": "MIT",
+    "private": true,
+    "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"],
+    "dependencies": {
+        "jquery": "~1.10.2",
+        "bootstrap": "~3.*"
+    }
+}
