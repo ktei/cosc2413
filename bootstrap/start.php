@@ -73,6 +73,7 @@ require $framework.'/Illuminate/Foundation/start.php';
 
 defined('FILE_PRODUCTS') || define('FILE_PRODUCTS', 'products.txt');
 defined('FILE_USERS') || define('FILE_USERS', 'users.txt');
+defined('FILE_ORDERS') || define('FILE_ORDERS', 'orders.txt');
 defined('DUMMY_USER_EMAIL') || define('DUMMY_USER_EMAIL', 'FOO');
 
 

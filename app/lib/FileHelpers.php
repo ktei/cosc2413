@@ -2,10 +2,10 @@
 
 trait FileHelpers {
 
-    public function openFile($filename) {
+    public function openFile($filename, $mode = 'r') {
         $repositories = __DIR__;
         $fpath = "{$repositories}/../../data/{$filename}";
-        return fopen($fpath, 'r');
+        return fopen($fpath, $mode);
     }
 
 }
