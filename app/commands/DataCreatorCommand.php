@@ -143,7 +143,7 @@ class DataCreatorCommand extends Command {
         for ($i = 0; $i < $this->count; $i++) {
             $list[] = array(
                 "p-{$i}",
-                $faker->sentence(2),
+                implode(' ', $faker->words(rand(2, 4))),
                 'http://placehold.it/100x100',
                 'http://placehold.it/200x200',
                 $faker->paragraph(5)

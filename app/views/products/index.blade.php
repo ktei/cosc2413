@@ -3,7 +3,11 @@
 @section('content')
 <h1>Products</h1>
 
-
+@if (!Auth::check())
+<div class="alert alert-warning">
+    In order to make any purchase, please <a href="{{URL::action('SessionsController@create')}}">log in</a> first.
+</div>
+@endif
 <div class="list-group">
     @foreach ($products as $product)
     <div class="list-group-item product">

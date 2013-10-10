@@ -37,6 +37,9 @@ class ProductRepository implements ProductRepositoryInterface {
             fclose($handle);
         }
         $this->applyPrices($list);
+        if (empty($list)) {
+            return null;
+        }
         return $list[0];
     }
 
