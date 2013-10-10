@@ -76,5 +76,9 @@ defined('FILE_USERS') || define('FILE_USERS', 'users.txt');
 defined('FILE_ORDERS') || define('FILE_ORDERS', 'orders.txt');
 defined('DUMMY_USER_EMAIL') || define('DUMMY_USER_EMAIL', 'FOO');
 
+defined('DELIVERY_POST') || define('DELIVERY_POST', 'regular_post');
+defined('DELIVERY_COURIER') || define('DELIVERY_COURIER', 'courier');
+defined('DELIVERY_EXPRESS_COURIER') || define('DELIVERY_EXPRESS_COURIER', 'express_courier');
+
 
 return $app;

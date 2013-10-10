@@ -11,7 +11,9 @@ Route::post('/cart', 'CartController@add');
 Route::get('/cart/clear', 'CartController@clear');
 Route::get('/cart/remove/{code}', 'CartController@remove');
 
-Route::get('/checkout', 'CheckoutController@create');
+Route::get('/checkout', 'OrdersController@create');
+Route::post('/checkout', 'OrdersController@store');
+Route::get('/checkout/done', 'OrdersController@show');
 
 Route::get('/login', 'SessionsController@create');
 Route::post('/login', 'SessionsController@store');

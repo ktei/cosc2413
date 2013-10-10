@@ -2,7 +2,7 @@
 
 interface OrderRepositoryInterface {
 
-    public function find($email);
+    public function findAll($email);
     
     public function create($order);
 }

@@ -21,6 +21,13 @@ class Order extends Model {
         return array(
             $this->email,
             $this->first_name,
+            $this->last_name,
+            $this->address,
+            $this->phone,
+            $this->delivery_method,
+            $this->credit_card_number,
+            $this->expiry_date,
+            json_encode($this->items)
         );
     }
 }

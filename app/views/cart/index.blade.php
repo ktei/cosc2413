@@ -5,7 +5,7 @@
 @if (count($items) > 0)
 <ul class="pager">
   <li class="previous"><a href="{{URL::action('ProductsController@index')}}">&larr; Products</a></li>
-  <li class="next"><a href="{{URL::action('CheckoutController@create')}}">Checkout &rarr;</a></li>
+  <li class="next"><a href="{{URL::action('OrdersController@create')}}">Checkout &rarr;</a></li>
 </ul>
 <table class="table table-hover">
   <thead>
@@ -41,7 +41,7 @@
 <a href="{{URL::action('CartController@clear')}}" 
     class="btn btn-default pull-right">Clear cart</a>
     
-<a href="{{URL::action('CheckoutController@create')}}" 
+<a href="{{URL::action('OrdersController@create')}}"
     class="btn btn-primary pull-right" style="margin-right:15px">Checkout</a>
 
 @else

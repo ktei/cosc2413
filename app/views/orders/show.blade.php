@@ -1,5 +1,5 @@
 @extends('layouts.master')
 
 @section('content')
-<h1>Checkout</h1>
+<h1>Your order has been completed!</h1>
 @stop

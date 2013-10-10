@@ -6,8 +6,15 @@ class OrderRepository implements OrderRepositoryInterface {
     
     use FileHelpers;
     
-    public function find($email) {
-        
+    public function findAll($email) {
+        $list = array();
+        if (($handle = $this->openFile(FILE_ORDERS)) !== FALSE) {
+            while (($data = fgetcsv($handle, 1000, "\t")) !== FALSE) {
+                $list[] = \Order::fromCSV($data);
+            }
+            fclose($handle);
+        }
+        return $list;
     }
     
     public function create($order) {
